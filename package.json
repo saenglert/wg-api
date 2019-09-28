@@ -7,7 +7,8 @@
   "license": "GPL-3.0-or-later",
   "scripts": {
     "build": "yarn tsc -p tsconfig.json",
-    "watch": "yarn tsc -p tsconfig.json -w"
+    "watch": "yarn tsc -p tsconfig.json -w",
+    "test": "yarn jest"
   },
   "dependencies": {
     "async": "^3.1.0",
@@ -16,6 +17,10 @@
   "devDependencies": {
     "@types/async": "^3.0.1",
     "@types/axios": "^0.14.0",
+    "@types/jest": "^24.0.18",
+    "@types/node": "^12.7.8",
+    "jest": "^24.9.0",
+    "ts-jest": "^24.1.0",
     "typescript": "^3.6.3"
   }
 }
