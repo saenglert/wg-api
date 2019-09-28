@@ -5,12 +5,17 @@
   "main": "dist/index.js",
   "author": "Sascha Englert",
   "license": "GPL-3.0-or-later",
+  "scripts": {
+    "build": "yarn tsc -p tsconfig.json",
+    "watch": "yarn tsc -p tsconfig.json -w"
+  },
   "dependencies": {
     "async": "^3.1.0",
     "axios": "^0.19.0"
   },
   "devDependencies": {
     "@types/async": "^3.0.1",
-    "@types/axios": "^0.14.0"
+    "@types/axios": "^0.14.0",
+    "typescript": "^3.6.3"
   }
 }

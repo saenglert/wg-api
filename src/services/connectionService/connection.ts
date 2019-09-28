@@ -1,9 +1,10 @@
 import axios from "axios";
-import Service from "../../constants/services";
+import { Service } from "../../constants/services";
 import Realm from "../../constants/realm";
 import ApiResponse from "../../constants/apiResponse";
 import CrewSkill from "../../constants/crewSkill";
 import { getUrl, authParameter } from "../../constants";
+import { EndpointNames } from "../../constants/endpoints";
 
 /**
  * Basic options for an api connection
@@ -25,7 +26,9 @@ export default class Connection {
     realm: Realm
 
     constructor(options: Options) {
-
+        this.applicationID = options.applicationID;
+        this.service = options.service;
+        this.realm = options.realm;
     }
     
     /**
@@ -34,9 +37,9 @@ export default class Connection {
      * @param resource The api endpoint to be called
      * @param parameters GET parameters to be included in the request
      */
-    get = async (resource: string, parameters: {[key: string] : string}  = {}) => {
+    get = async (endpoint: EndpointNames, action: string, parameters: {[name: string]: string | number | boolean}) => {
         const params = [...Object.keys(parameters).map(key => `${key}=${parameters[key]}`), `${authParameter}=${parameters.applicationID}`]
-        const response = await axios.get<ApiResponse<CrewSkill[]>>(`${getUrl(this.service, this.realm)}${resource}/?${params.join("&")}`)
+        const response = await axios.get<ApiResponse<CrewSkill[]>>(`${getUrl(this.service, this.realm)}${action}/?${params.join("&")}`)
         return response.data;
     }
 }

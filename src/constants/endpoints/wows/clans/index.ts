@@ -1,3 +1,5 @@
+import { ActionConfigType } from "../..";
+
 /**
  * Clans
  */
@@ -11,13 +13,13 @@ export enum ActionNames {
 }
 
 export type ActionType = {
-    [ActionName in ActionNames]: () => void;
+    [ActionName in ActionNames]: ActionConfigType;
 }
 
 export const Actions: ActionType = {
-    [ActionNames.LIST]: () => { },
-    [ActionNames.INFO]: () => { },
-    [ActionNames.ACCOUNTINFO]: () => { },
-    [ActionNames.GLOSSARY]: () => { },
-    [ActionNames.SEASON]: () => {}
+    [ActionNames.LIST]: () => ({}),
+    [ActionNames.INFO]: () => ({}),
+    [ActionNames.ACCOUNTINFO]: () => ({}),
+    [ActionNames.GLOSSARY]: () => ({}),
+    [ActionNames.SEASON]: () => ({})
 }

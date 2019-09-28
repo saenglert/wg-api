@@ -1,12 +1,19 @@
-import { Actions as AccountActions, ActionType as AccountActionType} from "./account";
-import { Actions as EncyclopediaActions, ActionType as EncyclopediaActionType } from "./encyclopedia";
-import { Actions as WarshipsActions, ActionType as WarshipsActionType } from "./warships";
-import { Actions as SeasonsActions, ActionType as SeasonsActionType } from "./seasons";
-import { Actions as ClansActions, ActionType as ClansActionType } from "./clans";
+import { Actions as AccountActions, ActionType as AccountActionType, ActionNames as AccountActionNames} from "./account";
+import { Actions as EncyclopediaActions, ActionType as EncyclopediaActionType, ActionNames as EncyclopediaActionNames } from "./encyclopedia";
+import { Actions as WarshipsActions, ActionType as WarshipsActionType, ActionNames as WarshipsActionNames} from "./warships";
+import { Actions as SeasonsActions, ActionType as SeasonsActionType, ActionNames as SeasonsActionNames } from "./seasons";
+import { Actions as ClansActions, ActionType as ClansActionType, ActionNames as ClansActionNames } from "./clans";
 
-type ActionType = AccountActionType | EncyclopediaActionType | WarshipsActionType | SeasonsActionType | ClansActionType;
+export type ActionType = AccountActionType | EncyclopediaActionType | WarshipsActionType | SeasonsActionType | ClansActionType;
+export const ActionNames = {
+    ...AccountActionNames,
+    ...EncyclopediaActionNames,
+    ...WarshipsActionNames,
+    ...SeasonsActionNames,
+    ...ClansActionNames
+};
 
-enum EndpointNames {
+export enum EndpointNames {
     ACCOUNT = "account",
     ENCYCLOPEDIA = "encyclopedia",
     WARSHIPS = "warships",
@@ -14,11 +21,11 @@ enum EndpointNames {
     CLANS = "clans"
 }
 
-type EndpointsType = {
+export type EndpointsType = {
     [Endpoint in EndpointNames]: ActionType;
 };
 
-const Endpoints: EndpointsType = {
+export const Endpoints: EndpointsType = {
     [EndpointNames.ACCOUNT]: AccountActions,
     [EndpointNames.ENCYCLOPEDIA]: EncyclopediaActions,
     [EndpointNames.WARSHIPS]: WarshipsActions,
@@ -26,4 +33,4 @@ const Endpoints: EndpointsType = {
     [EndpointNames.CLANS]: ClansActions
 };
 
-export default Endpoints
+export default Endpoints;
