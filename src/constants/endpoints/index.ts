@@ -7,7 +7,7 @@ export type ActionConfigType = (application_id: string, realm: Realm, ...args: a
 
 export type EndpointNames = WOWS.EndpointNames
 
-export const ActionNames = WOWS.ActionNames;
+export const ActionNames = WOWS.Actions;
 
 export type Endpoint = {
     name: EndpointNames,

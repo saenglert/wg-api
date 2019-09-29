@@ -1,11 +1,12 @@
-import { Actions as AccountActions, ActionType as AccountActionType, ActionNames as AccountActionNames} from "./account";
-import { Actions as EncyclopediaActions, ActionType as EncyclopediaActionType, ActionNames as EncyclopediaActionNames } from "./encyclopedia";
-import { Actions as WarshipsActions, ActionType as WarshipsActionType, ActionNames as WarshipsActionNames} from "./warships";
-import { Actions as SeasonsActions, ActionType as SeasonsActionType, ActionNames as SeasonsActionNames } from "./seasons";
-import { Actions as ClansActions, ActionType as ClansActionType, ActionNames as ClansActionNames } from "./clans";
+import { Actions as AccountActions, ActionNames as AccountActionNames} from "./account";
+import { Actions as EncyclopediaActions, ActionNames as EncyclopediaActionNames } from "./encyclopedia";
+import { Actions as WarshipsActions, ActionNames as WarshipsActionNames} from "./warships";
+import { Actions as SeasonsActions, ActionNames as SeasonsActionNames } from "./seasons";
+import { Actions as ClansActions, ActionNames as ClansActionNames } from "./clans";
 
-export type ActionType = AccountActionType | EncyclopediaActionType | WarshipsActionType | SeasonsActionType | ClansActionType;
-export const ActionNames = {
+export type Actions<Endpoint> = AccountActions | EncyclopediaActions | WarshipsActions | SeasonsActions | ClansActions;
+
+export const Actions = {
     ...AccountActionNames,
     ...EncyclopediaActionNames,
     ...WarshipsActionNames,
@@ -21,11 +22,11 @@ export enum EndpointNames {
     CLANS = "clans"
 }
 
-export type EndpointsType = {
-    [Endpoint in EndpointNames]: ActionType;
+export type Endpoints = {
+    [Endpoint in EndpointNames]: Actions<Endpoint>;
 };
 
-export const Endpoints: EndpointsType = {
+export const Endpoints: Endpoints = {
     [EndpointNames.ACCOUNT]: AccountActions,
     [EndpointNames.ENCYCLOPEDIA]: EncyclopediaActions,
     [EndpointNames.WARSHIPS]: WarshipsActions,

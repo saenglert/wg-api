@@ -11,11 +11,11 @@ export enum ActionNames {
     STATSBYDATE = "statsbydate",
 }
 
-export type ActionType = {
+export type Actions = {
     [ActionName in ActionNames]: ActionConfigType;
 }
 
-export const Actions: ActionType = {
+export const Actions: Actions = {
     [ActionNames.LIST]: () => ({}),
     [ActionNames.INFO]: () => ({}),
     [ActionNames.ACHIEVEMENTS]: () => ({}),

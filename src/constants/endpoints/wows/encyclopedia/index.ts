@@ -14,7 +14,7 @@ export enum ActionNames {
     ACHIEVEMENTS = "achievements"
 }
 
-export type ActionType = {
+export type Actions = {
     [ActionName in ActionNames]: ActionConfigType;
 }
 
@@ -34,10 +34,8 @@ const InfoAction: ActionConfigType = (application_id: string, realm: Realm, fiel
     }
 } 
 
-export const Actions: ActionType = {
+export const Actions: Actions = {
     [ActionNames.INFO]: InfoAction,
     [ActionNames.WARSHIPS]: () => ({}),
     [ActionNames.ACHIEVEMENTS]: () => ({}),
 }
-
-InfoAction("stuff", Realm.NA)

@@ -8,11 +8,11 @@ export enum ActionNames {
     ACCOUNTINFO = "accountinfo",
 }
 
-export type ActionType = {
+export type Actions = {
     [ActionName in ActionNames]: () => void;
 }
 
-export const Actions: ActionType = {
+export const Actions: Actions = {
     [ActionNames.INFO]: () => { },
     [ActionNames.SHIPSTATS]: () => { },
     [ActionNames.ACCOUNTINFO]: () => { },
