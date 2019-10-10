@@ -1,32 +1,26 @@
 import ConnectionService from "../src/services/connectionService";
-import Services from "../src/constants/services";
-import Realm from "../src/constants/realm";
-import Connection from "../src/services/connectionService/connection";
 
-const testConnectionOptions = { applicationID: "123", service: Services.wows, realm: Realm.EU };
+const testConfig = {url: "https://example.org"};
 
 beforeAll(() => {
     ConnectionService.removeAllConnections();
 });
 
 test("Add a connection", () => {
-    const newConnction = ConnectionService.getConnection(testConnectionOptions);
+    const newConnction = ConnectionService.getConnection(testConfig);
     expect(newConnction).toBeDefined();
     expect(ConnectionService.getAllConnections().length).toBe(1);
 });
 
 test("Retreive existing connection", () => {
-    const existingConnection = ConnectionService.getConnection(testConnectionOptions);
+    const existingConnection = ConnectionService.getConnection(testConfig);
     expect(existingConnection).toBeDefined();
     expect(ConnectionService.getAllConnections().length).toBe(1);
 });
 
 test("Remove existing connection", () => {
-    ConnectionService.removeConnection(Connection.generateId(
-        testConnectionOptions.applicationID, 
-        testConnectionOptions.service.name, 
-        testConnectionOptions.realm
-    ));
+    const existingConnection = ConnectionService.getConnection(testConfig);
+    ConnectionService.removeConnection(existingConnection);
     expect(ConnectionService.getAllConnections().length).toBe(0);
 });
 
