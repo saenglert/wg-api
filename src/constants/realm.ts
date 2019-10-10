@@ -4,7 +4,7 @@ export enum Realm {
     NA = "com",
     ASIA = "asia",
     PS4 = "api-ps4-console",
-    XBOX = "api-xbox-console"
+    XBOX = "api-xbox-console",
 }
 
 export default Realm;

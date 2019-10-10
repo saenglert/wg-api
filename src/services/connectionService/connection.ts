@@ -1,45 +1,25 @@
-import axios from "axios";
-import { Service } from "../../constants/services";
-import Realm from "../../constants/realm";
-import ApiResponse from "../../constants/apiResponse";
-import CrewSkill from "../../constants/crewSkill";
-import { getUrl, authParameter } from "../../constants";
-import { EndpointNames } from "../../constants/endpoints";
+import async from "async";
+import axios, { AxiosRequestConfig } from "axios";
 
-/**
- * Basic options for an api connection
- * 
- * @constant applicationID Applcation ID assigned by Wargaming (keep secret)
- * @constant service Game specific api service to be used
- * @constant realm Service region to be used for requests
- */
-export interface Options {
-    applicationID: string;
-    service: Service
-    realm: Realm;
-}
+const worker = async (config: AxiosRequestConfig, callback: (error: Error | null | undefined, ...results: any[]) => void) =>
+    axios.request(config)
+        .then((response) => callback(null, response.data))
+        .catch((error) => callback(error));
 
 export default class Connection {
+    private readonly id: string;
+    private readonly queue: async.AsyncQueue<AxiosRequestConfig>;
 
-    applicationID: string;
-    service: Service;
-    realm: Realm
+    constructor(hostname: string) {
+        this.id = hostname;
+        this.queue = async.queue(worker, 1);
+    }
 
-    constructor(options: Options) {
-        this.applicationID = options.applicationID;
-        this.service = options.service;
-        this.realm = options.realm;
-    }
-    
-    /**
-     * GET based request
-     * 
-     * @param resource The api endpoint to be called
-     * @param parameters GET parameters to be included in the request
-     */
-    get = async (endpoint: EndpointNames, action: string, parameters: {[name: string]: string | number | boolean}) => {
-        const params = [...Object.keys(parameters).map(key => `${key}=${parameters[key]}`), `${authParameter}=${parameters.applicationID}`]
-        const response = await axios.get<ApiResponse<CrewSkill[]>>(`${getUrl(this.service, this.realm)}${action}/?${params.join("&")}`)
-        return response.data;
-    }
+    public request = async (config: AxiosRequestConfig): Promise<any> =>
+        new Promise((resolve, reject) => {
+            const callback = (error: Error | null | undefined, data: any) => error ? reject(error) : resolve(data);
+            this.queue.push(config, callback);
+        })
+
+    public getId = () => this.id;
 }

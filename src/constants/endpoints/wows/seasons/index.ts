@@ -10,10 +10,10 @@ export enum ActionNames {
 
 export type Actions = {
     [ActionName in ActionNames]: () => void;
-}
+};
 
 export const Actions: Actions = {
-    [ActionNames.INFO]: () => { },
-    [ActionNames.SHIPSTATS]: () => { },
-    [ActionNames.ACCOUNTINFO]: () => { },
-}
+    [ActionNames.INFO]: () => {/** @todo */},
+    [ActionNames.SHIPSTATS]: () => {/** @todo */},
+    [ActionNames.ACCOUNTINFO]: () => {/** @todo */},
+};

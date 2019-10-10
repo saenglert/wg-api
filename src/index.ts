@@ -1,7 +1,20 @@
+import { AxiosRequestConfig } from "axios";
+import { authParameter } from "./constants";
 import ConnectionService from "./services/connectionService";
-import { Options } from "./services/connectionService/connection";
 
+class API {
+    private readonly applicationID: string;
 
-const api = (options: Options) => ConnectionService.getConnection(options);
+    constructor(applicationID: string) {
+        this.applicationID = applicationID;
+    }
 
-export default api;
+    public request = (config: AxiosRequestConfig) =>
+        ConnectionService.getConnection(config).request(this.mergeConfig(config))
+
+    private mergeConfig = (config: AxiosRequestConfig): AxiosRequestConfig =>
+        Object.assign({}, config, {params: {[authParameter]: this.applicationID}})
+
+}
+
+export default API;

@@ -3,13 +3,13 @@
  */
 
 export enum ActionNames {
-    STATS = "stats"
+    STATS = "stats",
 }
 
 export type Actions = {
     [ActionName in ActionNames]: () => void;
-}
+};
 
 export const Actions: Actions = {
-    [ActionNames.STATS]: () => {},
-}
+    [ActionNames.STATS]: () => {/** @todo */},
+};

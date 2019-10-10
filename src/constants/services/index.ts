@@ -4,7 +4,7 @@ export enum ServiceNames {
     WOTC = "wotc",
     WOWS = "wows",
     WOWP = "wows",
-    WARGAMING = "wargaming"
+    WARGAMING = "wargaming",
 }
 
 export enum ServicePath {
@@ -13,7 +13,7 @@ export enum ServicePath {
     WOTC = "wotx",
     WOWS = "wows",
     WOWP = "wowp",
-    WARGAMING = "wgn"
+    WARGAMING = "wgn",
 }
 
 export enum ServiceUrl {
@@ -22,7 +22,7 @@ export enum ServiceUrl {
     WOTC = "worldoftanks",
     WOWS = "api.worldofwarships",
     WOWP = "api.worldofwarplanes",
-    WARGAMING = "api.worldoftanks"
+    WARGAMING = "api.worldoftanks",
 }
 
 
@@ -35,45 +35,45 @@ export interface Service {
 
 export type Services = {
     [key in ServiceNames]: Service;
-}
+};
 
 const Services: Services = {
     [ServiceNames.WOT]: {
+        endpoints: [],
         name: ServiceNames.WOT,
         path: ServicePath.WOT,
         url: ServiceUrl.WOT,
-        endpoints: []
     },
     [ServiceNames.WOTB]: {
+        endpoints: [],
         name: ServiceNames.WOTB,
         path: ServicePath.WOTB,
         url: ServiceUrl.WOTB,
-        endpoints: []
     },
     [ServiceNames.WOTC]: {
+        endpoints: [],
         name: ServiceNames.WOTC,
         path: ServicePath.WOTC,
         url: ServiceUrl.WOTC,
-        endpoints: []
     },
     [ServiceNames.WOWS]: {
+        endpoints: [],
         name: ServiceNames.WOWS,
         path: ServicePath.WOWS,
         url: ServiceUrl.WOWS,
-        endpoints: []
     },
     [ServiceNames.WOWP]:  {
+        endpoints: [],
         name: ServiceNames.WOWP,
         path: ServicePath.WOWP,
         url: ServiceUrl.WOWP,
-        endpoints: []
     },
     [ServiceNames.WARGAMING]: {
+        endpoints: [],
         name: ServiceNames.WARGAMING,
         path: ServicePath.WARGAMING,
         url: ServiceUrl.WARGAMING,
-        endpoints: []
     },
-}
+};
 
 export default Services;

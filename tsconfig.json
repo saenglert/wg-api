@@ -1,6 +1,5 @@
 {
     "compilerOptions": {
-        "declaration": true,
         "downlevelIteration": true,
         "esModuleInterop": true,
         "lib": ["dom", "esnext"],
@@ -13,7 +12,7 @@
         "target": "esnext"
     }, 
     "include": [
-        "src/**/*"
+        "src/**/*", "test/**/*"
     ],
     "exclude": [
         "node_modules",

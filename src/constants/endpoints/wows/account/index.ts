@@ -1,5 +1,3 @@
-import { ActionConfigType } from "../..";
-
 /**
  * Account
  */
@@ -12,12 +10,12 @@ export enum ActionNames {
 }
 
 export type Actions = {
-    [ActionName in ActionNames]: ActionConfigType;
-}
+    [ActionName in ActionNames]: () => void;
+};
 
 export const Actions: Actions = {
-    [ActionNames.LIST]: () => ({}),
-    [ActionNames.INFO]: () => ({}),
-    [ActionNames.ACHIEVEMENTS]: () => ({}),
-    [ActionNames.STATSBYDATE]: () => ({}),
-}
+    [ActionNames.LIST]: () => {/** @todo */},
+    [ActionNames.INFO]: () => {/** @todo */},
+    [ActionNames.ACHIEVEMENTS]: () => {/** @todo */},
+    [ActionNames.STATSBYDATE]: () => {/** @todo */},
+};

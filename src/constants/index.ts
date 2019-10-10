@@ -17,3 +17,24 @@ export enum HTTPMethods {
     PUT = "PUT",
     DELETE = "DELETE",
 }
+
+export enum APILanguageNames {
+    CS = "cs",
+    DE = "de",
+    EN = "en",
+    FR = "fr",
+    JA = "ja",
+    PL = "pl",
+    RU = "ru",
+    TH = "th",
+    ZH_TW = "zh-tw",
+    TR = "tr",
+    ZH_CN = "zh-cn",
+    PT_BR = "pt-br",
+    ES_MEX = "es-mex"
+}
+
+export type Field<FieldNames> = {
+    name: FieldNames, 
+    exlude?: boolean
+};

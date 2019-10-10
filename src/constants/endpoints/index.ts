@@ -1,20 +1,16 @@
-import *  as WOWS from "./wows";
 import { ServiceNames } from "../services";
-import { AxiosRequestConfig } from "axios";
-import Realm from "../realm";
+import * as WOWS from "./wows";
 
-export type ActionConfigType = (application_id: string, realm: Realm, ...args: any[]) => AxiosRequestConfig;
+export type EndpointNames = WOWS.EndpointNames;
 
-export type EndpointNames = WOWS.EndpointNames
+export const EndpointNames = {
+    ...WOWS.EndpointNames,
+};
 
-export const ActionNames = WOWS.Actions;
-
-export type Endpoint = {
-    name: EndpointNames,
+export interface Endpoints {
+    [ServiceNames.WOWS]: WOWS.Endpoints;
 }
 
-export const Endpoints = {
-    [ServiceNames.WOWS]: WOWS.Endpoints
-}
-
-export default Endpoints;
+export const Endpoints: Endpoints = {
+    [ServiceNames.WOWS]: WOWS.Endpoints,
+};

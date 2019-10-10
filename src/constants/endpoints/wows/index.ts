@@ -1,17 +1,23 @@
-import { Actions as AccountActions, ActionNames as AccountActionNames} from "./account";
-import { Actions as EncyclopediaActions, ActionNames as EncyclopediaActionNames } from "./encyclopedia";
-import { Actions as WarshipsActions, ActionNames as WarshipsActionNames} from "./warships";
-import { Actions as SeasonsActions, ActionNames as SeasonsActionNames } from "./seasons";
-import { Actions as ClansActions, ActionNames as ClansActionNames } from "./clans";
+import { ActionNames as AccountActionNames, Actions as AccountActions} from "./account";
+import { ActionNames as ClansActionNames, Actions as ClansActions } from "./clans";
+import { ActionNames as EncyclopediaActionNames, Actions as EncyclopediaActions } from "./encyclopedia/actions";
+import { ActionNames as SeasonsActionNames, Actions as SeasonsActions } from "./seasons";
+import { ActionNames as WarshipsActionNames, Actions as WarshipsActions} from "./warships";
 
-export type Actions<Endpoint> = AccountActions | EncyclopediaActions | WarshipsActions | SeasonsActions | ClansActions;
+export interface Action<ActionNames, ParameterNames, ConfigType> {
+    path: ActionNames;
+    parameters: ParameterNames;
+    config: ConfigType;
+}
+
+export type Actions<ActionList> = ActionList;
 
 export const Actions = {
     ...AccountActionNames,
     ...EncyclopediaActionNames,
     ...WarshipsActionNames,
     ...SeasonsActionNames,
-    ...ClansActionNames
+    ...ClansActionNames,
 };
 
 export enum EndpointNames {
@@ -19,19 +25,21 @@ export enum EndpointNames {
     ENCYCLOPEDIA = "encyclopedia",
     WARSHIPS = "warships",
     SEASONS = "seasons",
-    CLANS = "clans"
+    CLANS = "clans",
 }
 
-export type Endpoints = {
-    [Endpoint in EndpointNames]: Actions<Endpoint>;
-};
+export interface Endpoints {
+    [EndpointNames.ACCOUNT]: AccountActions;
+    [EndpointNames.ENCYCLOPEDIA]: EncyclopediaActions;
+    [EndpointNames.WARSHIPS]: WarshipsActions;
+    [EndpointNames.SEASONS]: SeasonsActions;
+    [EndpointNames.CLANS]: ClansActions;
+}
 
 export const Endpoints: Endpoints = {
     [EndpointNames.ACCOUNT]: AccountActions,
     [EndpointNames.ENCYCLOPEDIA]: EncyclopediaActions,
     [EndpointNames.WARSHIPS]: WarshipsActions,
     [EndpointNames.SEASONS]: SeasonsActions,
-    [EndpointNames.CLANS]: ClansActions
+    [EndpointNames.CLANS]: ClansActions,
 };
-
-export default Endpoints;

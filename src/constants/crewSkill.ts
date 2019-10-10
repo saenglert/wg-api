@@ -3,7 +3,7 @@ export interface Perk {
     perk_id: number;
 }
 
-interface CrewSkill {
+export interface CrewSkill {
     icon: string;
     name: string;
     tier: number;
@@ -11,5 +11,3 @@ interface CrewSkill {
     type_name: string;
     perks: Perk[];
 }
-
-export default CrewSkill;
